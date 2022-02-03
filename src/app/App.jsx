@@ -4,10 +4,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import MainContainer from './containers/mainContainer';
-import MainPage from './components/page/main/';
+import ProductsCatalogue from './components/page/productsCatalogue';
 import LoginPage from './components/page/login';
-
-
 
 function App() {
 	// useEffect(() => {
@@ -18,7 +16,7 @@ function App() {
 		<div className='container-xxl'>
 			<MainContainer>
 				<Routes>
-					<Route path='/' element={<MainPage />} />
+					<Route path='/*' element={<ProductsCatalogue />} />
 					<Route path='/login' element={<LoginPage />} />
 				</Routes>
 			</MainContainer>
