@@ -8,10 +8,10 @@ const LoginPage = () => {
             <div className='col-6'>
                 <h5 className='text-center m-3'>Login</h5>
                 <div className='mb-3 row'>
-                    <label htmlFor='staticEmail' className='col-sm-2 col-form-label'>
+                    <label htmlFor='staticEmail' className='col-sm-3 col-form-label'>
                         Email
                     </label>
-                    <div className='col-sm-10'>
+                    <div className='col-sm-9'>
                         <input
                             type='text'
                             className='form-control-plaintext'
@@ -22,10 +22,10 @@ const LoginPage = () => {
                     </div>
                 </div>
                 <div className='mb-3 row'>
-                    <label htmlFor='inputPassword' className='col-sm-2 col-form-label'>
+                    <label htmlFor='inputPassword' className='col-sm-3 col-form-label'>
                         Password
                     </label>
-                    <div className='col-sm-10'>
+                    <div className='col-sm-9'>
                         <input type='password' className='form-control' id='inputPassword' />
                     </div>
                 </div>
