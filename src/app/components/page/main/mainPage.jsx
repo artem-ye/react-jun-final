@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SearchBar from '../../ui/searchbar';
 
 const MainPage = () => {
@@ -37,7 +38,9 @@ const MainPage = () => {
                             </div>
                             <div className='col-md-10'>
                                 <div className='card-body'>
-                                    <h5 className='card-title'>Card title</h5>
+                                    <h5 className='card-title'>
+                                        <Link to='/product?id=123' className='text-decoration-none text-black'>Сумка клевая</Link>
+                                    </h5>
                                     <p className='card-text'>
                                         This is a wider card with supporting text below as a natural lead-in to
                                         additional content. This content is a little bit longer.
