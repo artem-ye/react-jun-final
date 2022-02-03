@@ -5,10 +5,10 @@ const Navbar = () => {
 		<nav className='navbar navbar-expand-lg navbar-light bg-light'>
 			<div className='container-fluid'>
 				<div className='navbar'>
-					<span class='navbar-brand'>Navbar text with an inline element</span>
+					<span className='navbar-brand'>Navbar text with an inline element</span>
 				</div>
 				<div className='navbar'>
-					<span class='navbar-text'>
+					<span className='navbar-text'>
 						<a href='/login' className='nav-link active'>
 							login
 						</a>
@@ -20,4 +20,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-<h1>Navbar component</h1>;
