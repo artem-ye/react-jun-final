@@ -1,6 +1,6 @@
 import React from 'react';
 import CardEditField from '../../common/card/cardEditField';
-import TextField from '../../common/card/cardTextField';
+import CardTextField from '../../common/card/cardTextField';
 
 const CartItemProduct = () => {
     return (
@@ -17,7 +17,7 @@ const CartItemProduct = () => {
 
                 <div className='col-md-4'>
                     <div className='card-body'>
-                        <TextField title={'Сумка клевая'} value={'Мега афигенная'} />
+                        <CardTextField title={'Сумка клевая'} value={'Мега афигенная'} />
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@ const CartItemProduct = () => {
                 </div>
                 <div className='col-md-3'>
                     <div className='card-body'>
-                        <TextField title={'Сумма'} value={'1 200.00 $'} />
+                        <CardTextField title={'Сумма'} value={'1 200.00 $'} />
                     </div>
                     <button type='button' className='btn-light border-0 position-absolute top-0 end-0' aria-label='Close'>&#x2715;</button>
                 </div>

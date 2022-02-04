@@ -1,6 +1,6 @@
 import CardEditField from './cardEditField';
 
-const TextField = ({ title, value }) => {
+const CardTextField = ({ title, value }) => {
     return (
         <CardEditField
             title={title}
@@ -11,4 +11,4 @@ const TextField = ({ title, value }) => {
     );
 };
 
-export default TextField;
+export default CardTextField;

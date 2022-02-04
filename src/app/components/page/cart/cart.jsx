@@ -2,7 +2,7 @@ import React from 'react';
 import PageTitle from '../../common/pageTitle';
 import SearchBar from '../../common/searchbar';
 import CartItemProduct from '../../ui/product/productCartItem';
-import TextField from '../../common/card/cardTextField';
+import CardTextField from '../../common/card/cardTextField';
 
 const CartPage = () => {
     const PAGE_TITLE = "КОРЗИНА"
@@ -21,8 +21,8 @@ const CartPage = () => {
                 <div className='col-3'>
                     <div className='card mb-3 mt-2'>
                         <div className='card-body'>
-                            <TextField title={'Количество'} value={'14 шт.'} />
-                            <TextField title={'Сумма'} value={'1 200.00 $'} />
+                            <CardTextField title={'Количество'} value={'14 шт.'} />
+                            <CardTextField title={'Сумма'} value={'1 200.00 $'} />
                             <button className='btn btn-primary'>Оформить заказ</button>
                         </div>
                     </div>
