@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import SearchBar from './components/searchbar';
+import SearchBar from '../../common/searchbar';
 import ProductCard from './productCard';
 import ProductsList from './productsList';
 
