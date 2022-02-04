@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import EditField from './components/editField';
 import TextField from './components/textField';
 
 const CartProduct = () => {
@@ -23,7 +23,7 @@ const CartProduct = () => {
 
                 <div className='col-md-3'>
                     <div className='card-body'>
-                        <TextField title={'Количество'} value={'14 шт.'} />
+                        <EditField title={'Количество'} value={'14 шт.'} disabled={false} onChange={() => { }} />
                     </div>
                 </div>
                 <div className='col-md-3'>
