@@ -1,4 +1,5 @@
 import React from 'react';
+import PageTitle from '../../common/pageTitle';
 
 const LoginPage = () => {
     const email = 'email@example.com';
@@ -6,10 +7,10 @@ const LoginPage = () => {
     return (
         <form className='row justify-content-center'>
             <div className='col-6'>
-                <h5 className='text-center m-3'>Login</h5>
+                <PageTitle title='АВТОРИЗАЦИЯ' />
                 <div className='mb-3 row'>
                     <label htmlFor='staticEmail' className='col-sm-3 col-form-label'>
-                        Email
+                        email
                     </label>
                     <div className='col-sm-9'>
                         <input
@@ -23,7 +24,7 @@ const LoginPage = () => {
                 </div>
                 <div className='mb-3 row'>
                     <label htmlFor='inputPassword' className='col-sm-3 col-form-label'>
-                        Password
+                        пароль
                     </label>
                     <div className='col-sm-9'>
                         <input type='password' className='form-control' id='inputPassword' />
