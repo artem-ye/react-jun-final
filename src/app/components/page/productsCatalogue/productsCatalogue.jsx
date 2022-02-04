@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SearchBar from '../../common/searchbar';
-import ProductPage from '../../ui/product/productPage';
-import ProductsCatalogueList from './productsCatalogueList';
+import ProductPage from './productPage';
+import ProductsCatalogueList from './productsCatalogueListPage';
 
 const ProductsCatalogue = () => {
 	return (

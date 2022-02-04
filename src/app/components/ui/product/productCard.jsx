@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductPage = () => {
+const ProductCard = () => {
 	return (
 		<>
 			<h5 className='text-center'>Сумки / Афигенные</h5>
@@ -35,4 +35,4 @@ const ProductPage = () => {
 	);
 };
 
-export default ProductPage;
+export default ProductCard;
