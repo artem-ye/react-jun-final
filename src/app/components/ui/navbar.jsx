@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light bg-light'>
 			<div className='container-fluid'>
-				<div className='navbar'>
-					<span class='navbar-brand'>Navbar text with an inline element</span>
+				<div className='nav'>
+					<span className='navbar-brand'>Navbar text with an inline element</span>
 				</div>
-				<div className='navbar'>
-					<span class='navbar-text'>
-						<a href='/login' className='nav-link active'>
+				<div className='nav'>
+					<span className='navbar-text'>
+						<Link to='/login' className='text-primary text-decoration-none'>
 							login
-						</a>
+						</Link>
 					</span>
 				</div>
 			</div>
@@ -20,4 +21,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-<h1>Navbar component</h1>;
