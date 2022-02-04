@@ -7,6 +7,7 @@ import MainContainer from './containers/mainContainer';
 import ProductsCatalogue from './components/page/productsCatalogue';
 import LoginPage from './components/page/login';
 import RegisterPage from './components/page/register';
+import CartPage from './components/page/cart/cart';
 
 function App() {
 	// useEffect(() => {
@@ -20,6 +21,7 @@ function App() {
 					<Route path='/*' element={<ProductsCatalogue />} />
 					<Route path='/login' element={<LoginPage />} />
 					<Route path='/register' element={<RegisterPage />} />
+					<Route path='/cart' element={<CartPage />} />
 				</Routes>
 			</MainContainer>
 			<ToastContainer />
