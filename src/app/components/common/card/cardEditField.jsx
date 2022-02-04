@@ -1,4 +1,4 @@
-const EditField = ({ title, value, disabled, onChange }) => {
+const CardEditField = ({ title, value, disabled, onChange }) => {
     return (
         <>
             <h5 className='card-title text-nowrap'>{title}</h5>
@@ -12,6 +12,6 @@ const EditField = ({ title, value, disabled, onChange }) => {
             />
         </>
     );
-}
+};
 
-export default EditField;
+export default CardEditField;

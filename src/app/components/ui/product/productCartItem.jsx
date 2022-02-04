@@ -1,8 +1,8 @@
 import React from 'react';
-import EditField from './components/editField';
-import TextField from './components/textField';
+import CardEditField from '../../common/card/cardEditField';
+import TextField from '../../common/card/cardTextField';
 
-const CartProduct = () => {
+const CartItemProduct = () => {
     return (
         <div className='card mb-3 mt-2'>
             <div className='row g-0'>
@@ -23,7 +23,7 @@ const CartProduct = () => {
 
                 <div className='col-md-3'>
                     <div className='card-body'>
-                        <EditField title={'Количество'} value={'14 шт.'} disabled={false} onChange={() => { }} />
+                        <CardEditField title={'Количество'} value={'14 шт.'} disabled={false} onChange={() => { }} />
                     </div>
                 </div>
                 <div className='col-md-3'>
@@ -37,4 +37,4 @@ const CartProduct = () => {
     );
 };
 
-export default CartProduct;
+export default CartItemProduct;

@@ -1,14 +1,14 @@
-import EditField from './editField';
+import CardEditField from './cardEditField';
 
 const TextField = ({ title, value }) => {
     return (
-        <EditField
+        <CardEditField
             title={title}
             value={value}
             disabled={true}
             onChange={() => { }}
         />
     );
-}
+};
 
 export default TextField;

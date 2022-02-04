@@ -1,8 +1,8 @@
 import React from 'react';
 import PageTitle from '../../common/pageTitle';
 import SearchBar from '../../common/searchbar';
-import CartProduct from './cartProduct';
-import TextField from './components/textField';
+import CartItemProduct from '../../ui/product/productCartItem';
+import TextField from '../../common/card/cardTextField';
 
 const CartPage = () => {
     const PAGE_TITLE = "КОРЗИНА"
@@ -13,10 +13,10 @@ const CartPage = () => {
             <SearchBar />
             <div className='row'>
                 <div className='col-9'>
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
+                    <CartItemProduct />
+                    <CartItemProduct />
+                    <CartItemProduct />
+                    <CartItemProduct />
                 </div>
                 <div className='col-3'>
                     <div className='card mb-3 mt-2'>
@@ -30,6 +30,6 @@ const CartPage = () => {
             </div>
         </>
     );
-}
+};
 
 export default CartPage;
