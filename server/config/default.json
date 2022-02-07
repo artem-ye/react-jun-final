@@ -1,0 +1,8 @@
+{
+    "port": 8080,
+    "mongo": {
+        "user": "ay",
+        "pass": "5bj2AkP5qy9LZs8"
+    },
+    "mongoUri": "mongodb+srv://ay:5bj2AkP5qy9LZs8@cluster0.nonkq.mongodb.net/app?retryWrites=true&w=majority"
+}
