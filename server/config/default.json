@@ -2,7 +2,7 @@
     "port": 8080,
     "mongo": {
         "user": "ay",
-        "pass": "5bj2AkP5qy9LZs8"
-    },
-    "mongoUri": "mongodb+srv://ay:5bj2AkP5qy9LZs8@cluster0.nonkq.mongodb.net/app?retryWrites=true&w=majority"
+        "pass": "pXqOZe8gg87Buq7Q"
+    },    
+    "mongoUri": "mongodb+srv://ay:pXqOZe8gg87Buq7Q@cluster0.2ca3e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }

@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 
-// const initDataBase = require('./startUp/initDataBase');
+const initDataBase = require('./startUp/initDataBase');
 const apiRoutes = require('./routes/index');
 
 const {PORT, MONGO_URI} = getConfig();
@@ -16,11 +16,11 @@ app.use('/api', apiRoutes);
 
 async function start() {
     try {
-        // mongoose.connection.once('open', () => {
-        //     initDataBase();
-        // });
-        // await mongoose.connect(MONGO_URI);
-        app.listen(PORT, console.log('Server started on port:', PORT));
+        mongoose.connection.once('open', () => {
+            initDataBase();
+        });
+        await mongoose.connect(MONGO_URI);
+        app.listen(PORT, console.log('Server started on port:', PORT, 'db connected'));
     } catch (err) {
         console.log(chalk.red(err.message));
         // throw err;
