@@ -2,12 +2,8 @@ const mocData = require('./suppliers_products.json');
 
 function getMocData() {
     const mocSlice = mocData.find(e => e.supplier === 'Дорогие кольца Yiwu');
-    const parsedData = parseMocSlice(mocSlice);    
-
-    return {        
-        productsCategories: parsedData.productsCategories,
-        products: parsedData.products
-    }
+    const {productsCategories, products} = parseMocSlice(mocSlice);
+    return {productsCategories, products};
 }
 
 function parseMocSlice(data) {
@@ -29,7 +25,7 @@ function parseMocSlice(data) {
 
     const productsCategories = Array.from(categoriesSet).map(
         title => {return {title};}
-    );        
+    );
 
     return {
         productsCategories: productsCategories,

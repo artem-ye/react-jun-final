@@ -7,11 +7,11 @@ async function initDataBase() {
     const {products: productsMoc, productsCategories: productsCategoriesMoc} = getMocData();
     
     let productsCategories = await ProductCategory.find();
-    if (productsCategories.length === 0) {        
+    if (productsCategories.length === 0) {
+        console.log(chalk.red('Initializing products table'));
         const res = await createInitialEntries(ProductCategory, productsCategoriesMoc);
         productsCategories = await ProductCategory.find();
     }
-    
 
     if (await Product.find() < productsMoc.length) {
         console.log(chalk.red('Initializing products table'));
@@ -24,22 +24,6 @@ async function initDataBase() {
         });
         await createInitialEntries(Product, productsMocWithCategories);
     }
-
-
-
-    
-
-    // console.log(productsCategories);
-    
-    // const categoriesModel = new ProductCategory();
-    // categoriesModel.getA
-
-    // console.log('res', res);
-
-
-    // console.log(mocData);    
-    // const categories = 
-    // console.log('Found', mocSlice.supplier);
 }
 
 async function createInitialEntries(Model, data) {
@@ -48,7 +32,6 @@ async function createInitialEntries(Model, data) {
     return Promise.all( 
         data.map(async (item) => {
             try {
-            //    delete item._id;
                const newItem = new Model(item);
                await newItem.save();
             } catch (error) {
