@@ -1,0 +1,8 @@
+{
+    "port": 8080,
+    "mongo": {
+        "user": "ay",
+        "pass": "pXqOZe8gg87Buq7Q"
+    },    
+    "mongoUri": "mongodb+srv://ay:pXqOZe8gg87Buq7Q@cluster0.2ca3e.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
