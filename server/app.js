@@ -8,13 +8,12 @@ const apiRoutes = require('./routes/index');
 
 const { PORT, MONGO_URI } = getConfig();
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-app.use('/api', apiRoutes);
-
 async function start() {
+	const app = express();
+	app.use(express.json());
+	app.use(express.urlencoded({ extended: false }));
+	app.use('/api', apiRoutes);
+
 	try {
 		mongoose.connection.once('open', () => {
 			initDataBase();
