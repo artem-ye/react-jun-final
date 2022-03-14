@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NavbarProfile from './navbarProfile';
 
 const Navbar = () => {
 	return (
@@ -9,11 +9,7 @@ const Navbar = () => {
 					<span className='navbar-brand'>Navbar text with an inline element</span>
 				</div>
 				<div className='nav'>
-					<span className='navbar-text'>
-						<Link to='/login' className='text-primary text-decoration-none'>
-							login
-						</Link>
-					</span>
+					<NavbarProfile />
 				</div>
 			</div>
 		</nav>
