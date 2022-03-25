@@ -1,7 +1,7 @@
 import httpApi from './api.http.service';
 
 async function getProducts() {
-	const { data } = await httpApi.get('/productCategory');
+	const { data } = await httpApi.get('/product');
 	return data;
 }
 
