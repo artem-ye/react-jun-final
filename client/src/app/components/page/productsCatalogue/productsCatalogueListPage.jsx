@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { getProductsByCategory, loadProducts } from '../../../store/reducers/products.reducer';
 import { getProductsCategories, loadProductsCategories } from '../../../store/reducers/productsCategories.reducer';
 
 import ProductCatalogueItem from '../../ui/product/productCatalogueItem';
@@ -14,9 +15,11 @@ const ProductsCatalogueList = () => {
 	const productsCategories = useSelector(getProductsCategories);
 	const currentCategoryId = params.categoryId || productsCategories[0]?._id;
 
+	const products = useSelector(getProductsByCategory(currentCategoryId));
+
 	useEffect(() => {
 		dispatch(loadProductsCategories());
-		console.log('rendering...');
+		dispatch(loadProducts());
 	}, []);
 
 	const handleCategorySelect = (categoryId) => {
@@ -40,7 +43,9 @@ const ProductsCatalogueList = () => {
 					<option value='3'>Three</option>
 				</select>
 
-				<ProductCatalogueItem />
+				{products.map((product) => {
+					return <ProductCatalogueItem key={product._id} product={product} />;
+				})}
 			</div>
 		</div>
 	);
