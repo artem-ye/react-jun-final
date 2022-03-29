@@ -1,9 +1,8 @@
 import React from 'react';
 
-const ProductsOrderSelect = () => {
+const ProductsOrderSelect = ({ onSelect }) => {
 	return (
 		<select className='form-select form-select-sm' aria-label='.form-select-sm example'>
-			{/* <option selected>Сортировка: По цене</option> */}
 			<option selected value='price'>
 				Цена
 			</option>
