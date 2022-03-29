@@ -25,13 +25,12 @@ const ProductsCatalogueList = () => {
 	const [sortOrder, setSortOrder] = useState(sortOptions[0].value);
 	const searchBarValue = useSelector(getSearchBarValue);
 
-	// console.log(searchBarValue);
-
 	const productsCategories = useSelector(getProductsCategories);
 	const currentCategoryId = params.categoryId || productsCategories[0]?._id;
 
 	let products = useSelector(getProductsByCategory(currentCategoryId));
 	products = sortProducts(products, sortOrder);
+	products = filterProducts(products, searchBarValue);
 
 	useEffect(() => {
 		dispatch(loadProductsCategories());
@@ -80,6 +79,14 @@ function sortProducts(products, sortType) {
 	} else {
 		return products;
 	}
+}
+
+function filterProducts(products, value) {
+	if (!value) {
+		return products;
+	}
+
+	return products.filter((product) => product.title.includes(value));
 }
 
 export default ProductsCatalogueList;
