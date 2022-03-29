@@ -6,6 +6,7 @@ import { getProductsCategories, loadProductsCategories } from '../../../store/re
 
 import ProductCatalogueItem from '../../ui/product/productCatalogueItem';
 import ProductsCategories from './components/productsCategories';
+import ProductsOrderSelect from './components/productsOrderSelect';
 
 const ProductsCatalogueList = () => {
 	const dispatch = useDispatch();
@@ -36,12 +37,7 @@ const ProductsCatalogueList = () => {
 				/>
 			</div>
 			<div className='col-9'>
-				<select className='form-select form-select-sm' aria-label='.form-select-sm example'>
-					{/* <option selected>Сортировка: По цене</option> */}
-					<option value='1'>One</option>
-					<option value='2'>Two</option>
-					<option value='3'>Three</option>
-				</select>
+				<ProductsOrderSelect />
 
 				{products.map((product) => {
 					return <ProductCatalogueItem key={product._id} product={product} />;
