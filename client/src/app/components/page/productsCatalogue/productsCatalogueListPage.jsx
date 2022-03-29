@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProductsByCategory, loadProducts } from '../../../store/reducers/products.reducer';
 import { getProductsCategories, loadProductsCategories } from '../../../store/reducers/productsCategories.reducer';
+import { getSearchBarValue } from '../../../store/reducers/searchBar.reducer';
 
 import ProductCatalogueItem from '../../ui/product/productCatalogueItem';
 import ProductsCategories from './components/productsCategories';
@@ -14,6 +15,7 @@ const ProductsCatalogueList = () => {
 	const params = useParams();
 	const navigate = useNavigate();
 
+	// Filters
 	const sortOptions = [
 		{ title: 'Цена (по возрастанию)', value: 'priceAsc' },
 		{ title: 'Цена (по убыванию)', value: 'priceDesc' },
@@ -21,6 +23,9 @@ const ProductsCatalogueList = () => {
 		{ title: 'Наименование', value: 'title' },
 	];
 	const [sortOrder, setSortOrder] = useState(sortOptions[0].value);
+	const searchBarValue = useSelector(getSearchBarValue);
+
+	// console.log(searchBarValue);
 
 	const productsCategories = useSelector(getProductsCategories);
 	const currentCategoryId = params.categoryId || productsCategories[0]?._id;
