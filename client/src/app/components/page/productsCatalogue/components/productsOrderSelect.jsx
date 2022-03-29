@@ -1,13 +1,17 @@
 import React from 'react';
 
-const ProductsOrderSelect = ({ onSelect }) => {
+const ProductsOrderSelect = ({ options, onSelect }) => {
+	const handleSelect = (event) => {
+		onSelect(options[event.target.selectedIndex].value);
+	};
+
 	return (
-		<select className='form-select form-select-sm' aria-label='.form-select-sm example'>
-			<option selected value='price'>
-				Цена
-			</option>
-			<option value='sku'>Артикул</option>
-			<option value='title'>Наименование</option>
+		<select className='form-select form-select-sm' aria-label='.form-select-sm example' onChange={handleSelect}>
+			{options.map((option, index) => (
+				<option key={index} value={option.value}>
+					{option.title}
+				</option>
+			))}
 		</select>
 	);
 };
