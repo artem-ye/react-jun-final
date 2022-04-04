@@ -37,9 +37,16 @@ const ProductsCatalogueList = () => {
 	let products = useSelector(getProductsByCategory(currentCategoryId));
 	products = sortProducts(products, sortOrder);
 	products = filterProducts(products, searchBarValue);
+
 	// pagination
 	const PAGINATION_PAGES_COUNT = paginationUtils.pagesCount(products, PRODUCTS_PER_PAGE);
 	products = paginationUtils.paginate(products, PRODUCTS_PER_PAGE, paginationCurrentPageIndex);
+
+	// Initialization
+	useEffect(() => {
+		dispatch(loadProductsCategories());
+		dispatch(loadProducts());
+	}, []);
 
 	// Pagination handlers
 	const resetPagination = () => {
@@ -52,12 +59,7 @@ const ProductsCatalogueList = () => {
 		setPaginationCurrentPageIndex(pageIndex);
 	};
 
-	// Other events
-	useEffect(() => {
-		dispatch(loadProductsCategories());
-		dispatch(loadProducts());
-	}, []);
-
+	// Other handlers
 	const handleCategorySelect = (categoryId) => {
 		resetPagination();
 		navigate('/category/' + categoryId);
