@@ -5,12 +5,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getProductsByCategory, loadProducts } from '../../../store/reducers/products.reducer';
 import { getProductsCategories, loadProductsCategories } from '../../../store/reducers/productsCategories.reducer';
 import { getSearchBarValue } from '../../../store/reducers/searchBar.reducer';
+import { Pagination, paginationUtils } from '../../common/pagination';
 
 import ProductCatalogueItem from '../../ui/product/productCatalogueItem';
 import ProductsCategories from './components/productsCategories';
 import ProductsOrderSelect from './components/productsOrderSelect';
 
+const PRODUCTS_PER_PAGE = 10;
+
 const ProductsCatalogueList = () => {
+	const [paginationCurrentPageIndex, setPaginationCurrentPageIndex] = useState(0);
+
 	const dispatch = useDispatch();
 	const params = useParams();
 	const navigate = useNavigate();
@@ -28,21 +33,38 @@ const ProductsCatalogueList = () => {
 	const productsCategories = useSelector(getProductsCategories);
 	const currentCategoryId = params.categoryId || productsCategories[0]?._id;
 
+	// Apply sort/filter
 	let products = useSelector(getProductsByCategory(currentCategoryId));
 	products = sortProducts(products, sortOrder);
 	products = filterProducts(products, searchBarValue);
+	// pagination
+	const PAGINATION_PAGES_COUNT = paginationUtils.pagesCount(products, PRODUCTS_PER_PAGE);
+	products = paginationUtils.paginate(products, PRODUCTS_PER_PAGE, paginationCurrentPageIndex);
 
+	// Pagination handlers
+	const resetPagination = () => {
+		if (paginationCurrentPageIndex !== 0) {
+			setPaginationCurrentPageIndex(0);
+		}
+	};
+
+	const handlePageChange = (pageIndex) => {
+		setPaginationCurrentPageIndex(pageIndex);
+	};
+
+	// Other events
 	useEffect(() => {
 		dispatch(loadProductsCategories());
 		dispatch(loadProducts());
 	}, []);
 
 	const handleCategorySelect = (categoryId) => {
+		resetPagination();
 		navigate('/category/' + categoryId);
 	};
 
 	const handleSortOrderChange = (order) => {
-		console.log('Order changed', order);
+		resetPagination();
 		setSortOrder(order);
 	};
 
@@ -61,6 +83,13 @@ const ProductsCatalogueList = () => {
 				{products.map((product) => {
 					return <ProductCatalogueItem key={product._id} product={product} />;
 				})}
+			</div>
+			<div className='d-flex align-items-center justify-content-center'>
+				<Pagination
+					pagesCount={PAGINATION_PAGES_COUNT}
+					activePageIndex={paginationCurrentPageIndex}
+					onPageChange={handlePageChange}
+				/>
 			</div>
 		</div>
 	);
