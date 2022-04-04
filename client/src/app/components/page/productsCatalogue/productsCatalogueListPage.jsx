@@ -86,7 +86,11 @@ function filterProducts(products, value) {
 		return products;
 	}
 
-	return products.filter((product) => product.title.includes(value));
+	const valueLowerCase = value.toLowerCase();
+
+	return products.filter((product) => {
+		return product.title.toLowerCase().includes(valueLowerCase) || product.sku.includes(value);
+	});
 }
 
 export default ProductsCatalogueList;
