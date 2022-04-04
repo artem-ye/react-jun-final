@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { getProductsByCategory, loadProducts } from '../../../store/reducers/products.reducer';
 import { getProductsCategories, loadProductsCategories } from '../../../store/reducers/productsCategories.reducer';
 import { getSearchBarValue } from '../../../store/reducers/searchBar.reducer';
-import { Pagination, paginationUtils } from '../../common/pagination';
 
+import { Pagination, paginationUtils } from '../../common/pagination';
 import ProductCatalogueItem from '../../ui/product/productCatalogueItem';
 import ProductsCategories from './components/productsCategories';
 import ProductsOrderSelect from './components/productsOrderSelect';
