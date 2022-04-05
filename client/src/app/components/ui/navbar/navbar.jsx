@@ -6,7 +6,7 @@ const Navbar = () => {
 		<nav className='navbar navbar-expand-lg navbar-light bg-light'>
 			<div className='container-fluid'>
 				<div className='nav'>
-					<span className='navbar-brand'>Navbar text with an inline element</span>
+					<span className='navbar-brand'>MEGA SHOP</span>
 				</div>
 				<div className='nav'>
 					<NavbarProfile />
