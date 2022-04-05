@@ -46,7 +46,18 @@ const getProducts = () => (state) => state.products.entities;
 const getProductsByCategory = (categoryId) => (state) => {
 	return state.products.entities.filter((product) => product.category === categoryId);
 };
+const getProductById = (productId) => (state) => {
+	return state.products.entities.find((product) => product._id === productId);
+};
 
-export { getProducts, getProductsByCategory, loadProducts };
+const getIsProductsLoaded = () => (state) => {
+	return state.products.isLoaded;
+};
+
+const getIsProductsLoading = () => (state) => {
+	return state.products.isLoading;
+};
+
+export { getProducts, getProductsByCategory, getProductById, getIsProductsLoaded, getIsProductsLoading, loadProducts };
 
 export default productsReducer;
