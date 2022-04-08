@@ -18,8 +18,14 @@ const Pagination = ({ pagesCount, activePageIndex, onPageChange }) => {
 	const pagesArray = new Array(pagesCount).fill(1);
 
 	const applyHandleOnPageSelect = (index) => () => onPageChange(index);
-	const applyHandleOnNextPage = () => () => onPageChange(activePageIndex + 1);
-	const applyHandleOnPrevPage = () => () => onPageChange(activePageIndex - 1);
+	const applyHandleOnNextPage = () => () => {
+		const newPageIndex = activePageIndex + 1;
+		onPageChange(newPageIndex > pagesCount - 1 ? 0 : newPageIndex);
+	};
+	const applyHandleOnPrevPage = () => () => {
+		const newPageIndex = activePageIndex - 1;
+		onPageChange(newPageIndex < 0 ? pagesCount - 1 : newPageIndex);
+	};
 
 	return (
 		<nav aria-label=''>
