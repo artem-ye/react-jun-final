@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import ProductsCatalogueLoader from '../../../containers/productsCatalogueLoader';
 
-import { getProductsByCategory, loadProducts } from '../../../store/reducers/products.reducer';
-import { getProductsCategories, loadProductsCategories } from '../../../store/reducers/productsCategories.reducer';
+import { getProductsByCategory } from '../../../store/reducers/products.reducer';
+import { getProductsCategories } from '../../../store/reducers/productsCategories.reducer';
 import { getSearchBarValue } from '../../../store/reducers/searchBar.reducer';
 
 import { Pagination, paginationUtils } from '../../common/pagination';
@@ -15,9 +16,16 @@ import ProductsOrderSelect from './components/productsOrderSelect';
 const PRODUCTS_PER_PAGE = 10;
 
 const ProductsCatalogueList = () => {
+	return (
+		<ProductsCatalogueLoader>
+			<CatalogueList></CatalogueList>
+		</ProductsCatalogueLoader>
+	);
+};
+
+const CatalogueList = () => {
 	const [paginationCurrentPageIndex, setPaginationCurrentPageIndex] = useState(0);
 
-	const dispatch = useDispatch();
 	const params = useParams();
 	const navigate = useNavigate();
 
@@ -42,12 +50,6 @@ const ProductsCatalogueList = () => {
 	// pagination
 	const PAGINATION_PAGES_COUNT = paginationUtils.pagesCount(products, PRODUCTS_PER_PAGE);
 	products = paginationUtils.paginate(products, PRODUCTS_PER_PAGE, paginationCurrentPageIndex);
-
-	// Initialization
-	useEffect(() => {
-		dispatch(loadProductsCategories());
-		dispatch(loadProducts());
-	}, []);
 
 	// Pagination handlers
 	const resetPagination = () => {
