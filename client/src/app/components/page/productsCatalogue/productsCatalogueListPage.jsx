@@ -31,7 +31,7 @@ const ProductsCatalogueList = () => {
 	const [sortOrder, setSortOrder] = useState(sortOptions[0].value);
 	const searchBarValue = useSelector(getSearchBarValue);
 
-	const productsCategories = useSelector(getProductsCategories);
+	const productsCategories = useSelector(getProductsCategories());
 	const currentCategoryId = params.categoryId || productsCategories[0]?._id;
 
 	// Apply sort/filter

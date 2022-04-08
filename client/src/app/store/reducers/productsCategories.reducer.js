@@ -43,8 +43,20 @@ const loadProductsCategories = () => async (dispatch) => {
 	}
 };
 
-const getProductsCategories = (state) => state.productsCategories.entities;
+const getProductsCategories = () => (state) => state.productsCategories.entities;
+const getProductsCategoryById = (id) => (state) => {
+	return state.productsCategories.entities.find((category) => category._id === id);
+};
 
-export { getProductsCategories, loadProductsCategories };
+const getIsProductsCategoriesLoaded = () => (state) => state.productsCategories.isLoaded;
+const getIsProductsCategoriesLoading = () => (state) => state.productsCategories.isLoading;
+
+export {
+	getProductsCategories,
+	getProductsCategoryById,
+	getIsProductsCategoriesLoaded,
+	getIsProductsCategoriesLoading,
+	loadProductsCategories,
+};
 
 export default productsCategoriesReducer;
