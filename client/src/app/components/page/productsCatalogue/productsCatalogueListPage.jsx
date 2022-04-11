@@ -29,7 +29,10 @@ const CatalogueList = () => {
 
 	const [searchParams, setSearchParams] = useSearchParams();
 	const paginationCurrentPageIndex = searchParams.get('page') || 0;
-	const setPaginationCurrentPageIndex = (pageIndex) => setSearchParams({ page: pageIndex });
+	const setPaginationCurrentPageIndex = (pageIndex) => {
+		setSearchParams({ page: pageIndex });
+		window.scrollTo(0, 0);
+	};
 
 	// Filters
 	const sortOptions = [
