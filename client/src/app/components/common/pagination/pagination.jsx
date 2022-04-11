@@ -15,15 +15,16 @@ const PageItem = ({ index, isActive, onClick }) => {
 const Pagination = ({ pagesCount, activePageIndex, onPageChange }) => {
 	if (!pagesCount || pagesCount < 2) return null;
 
+	const normalizedPageIndex = Number(activePageIndex);
 	const pagesArray = new Array(pagesCount).fill(1);
 
 	const applyHandleOnPageSelect = (index) => () => onPageChange(index);
 	const applyHandleOnNextPage = () => () => {
-		const newPageIndex = activePageIndex + 1;
+		const newPageIndex = normalizedPageIndex + 1;
 		onPageChange(newPageIndex > pagesCount - 1 ? 0 : newPageIndex);
 	};
 	const applyHandleOnPrevPage = () => () => {
-		const newPageIndex = activePageIndex - 1;
+		const newPageIndex = normalizedPageIndex - 1;
 		onPageChange(newPageIndex < 0 ? pagesCount - 1 : newPageIndex);
 	};
 
@@ -37,7 +38,7 @@ const Pagination = ({ pagesCount, activePageIndex, onPageChange }) => {
 				</li>
 
 				{pagesArray.map((_, index) => {
-					const isActive = activePageIndex === index;
+					const isActive = normalizedPageIndex === index;
 					return (
 						<PageItem
 							key={index}

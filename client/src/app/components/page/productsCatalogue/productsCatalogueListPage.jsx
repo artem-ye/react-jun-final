@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import ProductsCatalogueLoader from '../../../containers/productsCatalogueLoader';
 
 import { getProductsByCategory } from '../../../store/reducers/products.reducer';
@@ -24,10 +24,12 @@ const ProductsCatalogueList = () => {
 };
 
 const CatalogueList = () => {
-	const [paginationCurrentPageIndex, setPaginationCurrentPageIndex] = useState(0);
-
 	const params = useParams();
 	const navigate = useNavigate();
+
+	const [searchParams, setSearchParams] = useSearchParams();
+	const paginationCurrentPageIndex = searchParams.get('page') || 0;
+	const setPaginationCurrentPageIndex = (pageIndex) => setSearchParams({ page: pageIndex });
 
 	// Filters
 	const sortOptions = [
