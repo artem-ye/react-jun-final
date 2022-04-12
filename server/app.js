@@ -5,6 +5,7 @@ const chalk = require('chalk');
 
 const initDataBase = require('./startUp/initDataBase');
 const apiRoutes = require('./routes/index');
+const cors = require('cors');
 
 const { PORT, MONGO_URI } = getConfig();
 
@@ -12,6 +13,7 @@ async function start() {
 	const app = express();
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: false }));
+	app.use(cors());
 	app.use('/api', apiRoutes);
 
 	try {

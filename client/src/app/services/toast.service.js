@@ -1,9 +1,11 @@
 import { toast } from 'react-toastify';
 
 const toastSuccess = (msg) => {
-    toast.success(msg);
+	toast.success(msg);
 };
 
-export {
-    toastSuccess
-}
+const toastError = (msg) => {
+	toast.error(msg);
+};
+
+export { toastSuccess, toastError };

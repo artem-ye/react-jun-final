@@ -10,6 +10,7 @@ const ProductsCatalogue = () => {
 			<SearchBar />
 			<Routes>
 				<Route path='/*' element={<ProductsCatalogueList />} />
+				<Route path='/category/:categoryId' element={<ProductsCatalogueList />} />
 				<Route path='/product/:id' element={<ProductPage />} />
 			</Routes>
 		</div>

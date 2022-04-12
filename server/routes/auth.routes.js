@@ -15,19 +15,6 @@ const validationChecks = {
 	],
 	signInWithPassword: [
 		check('email', "'email' validation failed: invalid address").exists(),
-		// check('email').custom((email) => {
-		// 	return new Promise((resolve, reject) => {
-		// 		authService.isUserExists('test1@test.ua').then((isUserExists) => {
-		// 			console.log('Check res', isUserExists, email);
-
-		// 			if (isUserExists) {
-		// 				reject('Exists');
-		// 			} else {
-		// 				resolve();
-		// 			}
-		// 		});
-		// 	});
-		// }),
 		check('password', "'password' validation failed: required'").exists(),
 	],
 	refreshToken: [check('refreshToken', "'refreshToken' required").exists()],

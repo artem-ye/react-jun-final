@@ -9,6 +9,10 @@ class UserService {
 		return await User.findOne(queryParams);
 	}
 
+	async findById(id) {
+		return await User.findById(id);
+	}
+
 	async isAdmin(userId) {
 		try {
 			return await !!User.findById(userId);
