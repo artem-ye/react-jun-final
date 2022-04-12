@@ -29,13 +29,13 @@ const UserProfile = ({ userProfile, onLogOut }) => {
 				{/* <Link to={`/users/${currentUser?._id}`} className='dropdown-item'>
 					Profile
 				</Link> */}
-				<li type='button' onClick={onLogOut} className='dropdown-item '>
-					<i className='bi bi-box-arrow-left text-secondary'></i>&nbsp;&nbsp;Выйти
-				</li>
 				<li type='button' className='dropdown-item'>
 					<Link to='/cart' className='text-black text-decoration-none'>
 						<i className='bi bi-cart3 text-secondary'></i>&nbsp;&nbsp;Корзина
 					</Link>
+				</li>
+				<li type='button' onClick={onLogOut} className='dropdown-item '>
+					<i className='bi bi-box-arrow-left text-secondary'></i>&nbsp;&nbsp;Выйти
 				</li>
 			</ul>
 		</div>
