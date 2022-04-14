@@ -42,7 +42,7 @@ const cartSlice = createSlice({
 	reducers: {
 		addItem: (state, action) => {
 			const { productId, count, price, ...rest } = CartItemFactory.create(action.payload);
-			const index = state.entities.findIndex((item) => item._id === productId);
+			const index = state.entities.findIndex((item) => item.productId === productId);
 
 			if (index >= 0) {
 				const item = state.entities[index];
