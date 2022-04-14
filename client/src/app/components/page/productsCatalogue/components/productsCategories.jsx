@@ -6,7 +6,7 @@ const ProductCategoryItem = ({ category, isActive, onClick }) => {
 
 	const className = 'list-group-item' + (isActive ? ' active' : '');
 	return (
-		<li className={className} onClick={handleClick}>
+		<li className={className} onClick={handleClick} role='button'>
 			{title}
 		</li>
 	);
