@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ProductsCatalogueLoader from '../../../containers/productsCatalogueLoader';
+import { toastSuccess } from '../../../services/toast.service';
 import { addCartItem } from '../../../store/reducers/cart.reducer';
 import { getProductById } from '../../../store/reducers/products.reducer';
 import { getProductsCategoryById } from '../../../store/reducers/productsCategories.reducer';
@@ -16,7 +17,8 @@ const Product = () => {
 
 	const dispatch = useDispatch();
 	const handleAddToCart = () => {
-		dispatch(addCartItem({ productId: PRODUCT_ID, count: 1 }));
+		dispatch(addCartItem({ productId: product._id, price: product.price, count: 1 }));
+		toastSuccess(product.sku + ' ' + product.title + ' добавлен в корзину');
 	};
 
 	if (!product) {

@@ -16,10 +16,13 @@ const CartItemFactory = {
 	),
 
 	create({ ...itemProps }) {
-		return {
+		const item = {
 			...this._ITEM_PROTO,
 			...itemProps,
 		};
+
+		item.sum = item.count * item.price;
+		return item;
 	},
 
 	validate(item) {
@@ -38,7 +41,7 @@ const cartSlice = createSlice({
 	initialState: INITIAL_STATE,
 	reducers: {
 		addItem: (state, action) => {
-			const { productId, count, ...rest } = CartItemFactory.create(action.payload);
+			const { productId, count, price, ...rest } = CartItemFactory.create(action.payload);
 			const index = state.entities.findIndex((item) => item._id === productId);
 
 			if (index >= 0) {
@@ -46,7 +49,7 @@ const cartSlice = createSlice({
 				item.count.count += count;
 				item.sum = count * item.price;
 			} else {
-				state.entities.push({ productId, count, ...rest });
+				state.entities.push({ productId, count, price, ...rest });
 			}
 		},
 		updateItemCount: (state, action) => {
