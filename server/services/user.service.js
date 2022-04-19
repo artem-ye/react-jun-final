@@ -2,7 +2,7 @@ const User = require('../model/User');
 
 class UserService {
 	async create(data) {
-		return await User.create(data);
+		return await User.create({ ...data, isAdmin: false });
 	}
 
 	async find(queryParams) {
@@ -15,7 +15,7 @@ class UserService {
 
 	async isAdmin(userId) {
 		try {
-			return await !!User.findById(userId);
+			return await !!User.findById(userId)?.isAdmin;
 		} catch (err) {
 			return null;
 		}

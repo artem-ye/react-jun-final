@@ -25,6 +25,10 @@ class ValidatorsChain {
 		return this.#chainValidator(VALIDATOR_HANDLERS.isNotEmptyString, message);
 	}
 
+	isCount(message = '') {
+		return this.#chainValidator(VALIDATOR_HANDLERS.isCount, message);
+	}
+
 	#chainValidator(validatorHandler, message) {
 		const valueValidator = new ValueValidator(this.#fieldName, message, validatorHandler);
 		this.#validators.push(valueValidator);

@@ -22,4 +22,6 @@ function useValidator(...checks) {
 	return (targetObject) => validator.validate(targetObject);
 }
 
-export { check, useValidator };
+const createValidator = useValidator;
+
+export { check, useValidator, createValidator };

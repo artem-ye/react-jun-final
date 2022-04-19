@@ -1,7 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ProductsCatalogueLoader from '../../../containers/productsCatalogueLoader';
+import { toastSuccess } from '../../../services/toast.service';
+import { addCartItem } from '../../../store/reducers/cart.reducer';
 import { getProductById } from '../../../store/reducers/products.reducer';
 import { getProductsCategoryById } from '../../../store/reducers/productsCategories.reducer';
 
@@ -11,6 +14,12 @@ const Product = () => {
 	const PRODUCT_ID = params.id;
 	const product = useSelector(getProductById(PRODUCT_ID));
 	const productCategory = useSelector(getProductsCategoryById(product.category));
+
+	const dispatch = useDispatch();
+	const handleAddToCart = () => {
+		dispatch(addCartItem({ productId: product._id, price: product.price, count: 1 }));
+		toastSuccess(product.sku + ' ' + product.title + ' добавлен в корзину');
+	};
 
 	if (!product) {
 		return (
@@ -47,7 +56,9 @@ const Product = () => {
 						</div>
 					</div>
 					<div className='col-md-2 align-items-center justify-content-center d-flex'>
-						<button className='btn btn-primary btn-lg'>В КОРЗИНУ</button>
+						<button className='btn btn-primary btn-lg' onClick={handleAddToCart}>
+							В КОРЗИНУ
+						</button>
 					</div>
 				</div>
 			</div>
