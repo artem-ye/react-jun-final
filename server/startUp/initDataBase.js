@@ -9,7 +9,7 @@ async function initDataBase() {
 	let productsCategories = await ProductCategory.find();
 	if (productsCategories.length === 0) {
 		console.log(chalk.red('Initializing products table'));
-		const res = await createInitialEntries(ProductCategory, productsCategoriesMoc);
+		await createInitialEntries(ProductCategory, productsCategoriesMoc);
 		productsCategories = await ProductCategory.find();
 	}
 

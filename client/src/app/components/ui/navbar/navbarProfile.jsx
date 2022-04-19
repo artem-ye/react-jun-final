@@ -18,9 +18,13 @@ const UserProfile = ({ userProfile, onLogOut }) => {
 	const avatar = 'https://avatars.dicebear.com/api/avataaars/ndvbb.svg';
 
 	const navigate = useNavigate();
-	const handleCartClick = () => {
-		navigate('/cart');
-	};
+	const createLinkHandler = (url) => () => navigate(url);
+
+	const menuItems = [
+		{ title: 'Admin', icon: 'bi-gear', onClick: createLinkHandler('/admin'), disabled: !userProfile.isAdmin },
+		{ title: 'Корзина', icon: 'bi-cart3', onClick: createLinkHandler('/cart') },
+		{ title: 'Выйти', icon: 'bi-box-arrow-left', onClick: onLogOut },
+	];
 
 	return (
 		<div className='dropdown' onClick={toggleMenu}>
@@ -31,17 +35,26 @@ const UserProfile = ({ userProfile, onLogOut }) => {
 				</div>
 			</div>
 			<ul className={'dropdown-menu dropdown-menu-end ' + (isOpen ? 'show' : '')} style={{ right: '-12px' }}>
-				{/* <Link to={`/users/${currentUser?._id}`} className='dropdown-item'>
-					Profile
-				</Link> */}
-				<li type='button' className='dropdown-item' onClick={handleCartClick}>
-					<i className='bi bi-cart3 text-secondary'></i>&nbsp;&nbsp;Корзина
-				</li>
-				<li type='button' onClick={onLogOut} className='dropdown-item '>
-					<i className='bi bi-box-arrow-left text-secondary'></i>&nbsp;&nbsp;Выйти
-				</li>
+				{menuItems.map((item, key) => {
+					const { title, icon, onClick, disabled } = item;
+					return (
+						<ProfileMenuItem key={key} title={title} icon={icon} onClick={onClick} disabled={disabled} />
+					);
+				})}
 			</ul>
 		</div>
+	);
+};
+
+const ProfileMenuItem = ({ title, icon, onClick, disabled }) => {
+	if (disabled) {
+		return null;
+	}
+
+	return (
+		<li type='button' onClick={onClick} className='dropdown-item '>
+			<i className={`bi ${icon} text-secondary`}></i>&nbsp;&nbsp;{title}
+		</li>
 	);
 };
 
