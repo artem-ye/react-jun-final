@@ -6,7 +6,8 @@ const schema = new Schema(
 		title: { type: String, required: true },
 		image: { type: String, required: true },
 		price: { type: Number },
-		category: { type: Schema.Types.ObjectId, ref: 'ProductCategory' },
+		count: { type: Number },
+		category: { type: Schema.Types.ObjectId, ref: 'ProductCategory', required: true },
 	},
 	{
 		timestamps: true,

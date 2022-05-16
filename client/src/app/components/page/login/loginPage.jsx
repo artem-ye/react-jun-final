@@ -9,7 +9,7 @@ import FormInputField from '../../common/form/formInputField';
 import { getLoginError, logIn as logInAction } from '../../../store/reducers/user.reducer';
 import { toastError } from '../../../services/toast.service';
 
-const LoginPage = () => {
+const LoginPage = ({ redirectTo }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const loginError = useSelector(getLoginError);
@@ -50,7 +50,7 @@ const LoginPage = () => {
 			const isLoginSuccess = await dispatch(logInAction({ email, password }));
 
 			if (isLoginSuccess) {
-				navigate('/');
+				navigate(redirectTo || '/');
 			}
 		} else {
 			setValidationErrors(validationRes);
@@ -95,39 +95,5 @@ const LoginPage = () => {
 		</form>
 	);
 };
-
-// const InputField = (title, name, value, onChange, error, ...rest) => {
-// 	return (
-// 		<>
-// 			<label htmlFor='inputPassword' className='col-sm-3 col-form-label'>
-// 				{title}
-// 			</label>
-// 			<div className='col-sm-9'>
-// 				<input
-// 					// type='password'
-// 					className={'form-control' + (error ? ' is-invalid' : '')}
-// 					id='inputPassword'
-// 					name={name}
-// 					value={value}
-// 					onChange={onChange}
-// 					{...rest}
-// 				/>
-// 			</div>
-// 		</>
-// 	);
-// };
-
-// const useValidator = () => {
-// 	// const config = {
-// 	// 	email: {
-// 	// 		[VALIDATORS.isRequired]: { message: 'E-mail обязателен для заполнения' },
-// 	// 		[VALIDATORS.isEmail]: { message: 'E-mail должен быть адресом элкетронной почты' },
-// 	// 	},
-// 	// 	password: {
-// 	// 		[VALIDATORS.isRequired]: { message: 'Пароль не может быть пустым' },
-// 	// 	},
-// 	// };
-// 	// return (data) => validate(data, config);
-// };
 
 export default LoginPage;

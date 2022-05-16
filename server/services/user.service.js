@@ -15,7 +15,7 @@ class UserService {
 
 	async isAdmin(userId) {
 		try {
-			return await !!User.findById(userId)?.isAdmin;
+			return (await User.findById(userId))?.isAdmin;
 		} catch (err) {
 			return null;
 		}

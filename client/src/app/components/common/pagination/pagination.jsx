@@ -1,19 +1,30 @@
 import React from 'react';
 
-const PageItem = ({ index, isActive, onClick }) => {
+const PageItem = ({ index, isActive, onClick, isDisabled }) => {
 	const pageItemClassList = 'page-item' + (isActive ? ' active' : '');
 
+	const clickHandle = (event) => {
+		if (isDisabled) {
+			event.preventDefault();
+			return;
+		}
+
+		onClick(event);
+	};
+
 	return (
-		<li className={pageItemClassList} aria-current='page' onClick={onClick}>
-			<span className='page-link' href='#'>
+		<li className={toggleDisabledClass(pageItemClassList, isDisabled)} aria-current='page' onClick={clickHandle}>
+			<span className={toggleDisabledClass('page-link', isDisabled)} aria-disabled='true' href='#'>
 				{index + 1}
 			</span>
 		</li>
 	);
 };
 
-const Pagination = ({ pagesCount, activePageIndex, onPageChange }) => {
+const Pagination = ({ pagesCount, activePageIndex, onPageChange, disabled }) => {
 	if (!pagesCount || pagesCount < 2) return null;
+
+	const isDisabled = !!disabled;
 
 	const normalizedPageIndex = Number(activePageIndex);
 	const pagesArray = new Array(pagesCount).fill(1);
@@ -31,7 +42,7 @@ const Pagination = ({ pagesCount, activePageIndex, onPageChange }) => {
 	return (
 		<nav aria-label=''>
 			<ul className='pagination'>
-				<li className='page-item'>
+				<li className={toggleDisabledClass('page-item', isDisabled)}>
 					<span className='page-link' href='#' aria-label='Previous' onClick={applyHandleOnPrevPage()}>
 						<span aria-hidden='true'>&laquo;</span>
 					</span>
@@ -45,11 +56,12 @@ const Pagination = ({ pagesCount, activePageIndex, onPageChange }) => {
 							isActive={isActive}
 							index={index}
 							onClick={applyHandleOnPageSelect(index)}
+							isDisabled={isDisabled}
 						/>
 					);
 				})}
 
-				<li className='page-item'>
+				<li className={toggleDisabledClass('page-item', isDisabled)}>
 					<span className='page-link' href='#' aria-label='Next' onClick={applyHandleOnNextPage()}>
 						<span aria-hidden='true'>&raquo;</span>
 					</span>
@@ -58,5 +70,9 @@ const Pagination = ({ pagesCount, activePageIndex, onPageChange }) => {
 		</nav>
 	);
 };
+
+function toggleDisabledClass(className, disabled) {
+	return disabled ? `${className} disabled` : className;
+}
 
 export default Pagination;

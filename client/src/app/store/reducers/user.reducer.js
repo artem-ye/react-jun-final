@@ -129,6 +129,7 @@ const getIsProfileLoaded = (state) => state.auth.isProfileLoaded;
 const getProfile = (state) => state.auth.profile;
 const getIsProfileLoading = (state) => state.auth.isProfileLoading;
 const getLoadProfileError = (state) => state.auth.loadProfileError;
+const getIsAdminProfile = (state) => state.auth.profile.isAdmin;
 
 const getSignUpError = (state) => state.auth.signUpError;
 
@@ -142,6 +143,7 @@ export {
 	getIsLoggedIn,
 	getIsProfileLoaded,
 	getProfile,
+	getIsAdminProfile,
 	getIsProfileLoading,
 	getLoadProfileError,
 	getSignUpError,

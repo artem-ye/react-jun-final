@@ -8,7 +8,7 @@ import ProductsCatalogue from './components/page/productsCatalogue';
 import LoginPage from './components/page/login';
 import RegisterPage from './components/page/register';
 import CartPage from './components/page/cart/cart';
-import AdminProductsCatalogue from './components/page/adminProductsCatalogue';
+import AdminPage from './components/page/admin';
 
 import createSore from './store/createStore';
 import { Provider } from 'react-redux';
@@ -29,7 +29,7 @@ function App() {
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/register' element={<RegisterPage />} />
 						<Route path='/cart' element={<CartPage />} />
-						<Route path='/admin/*' element={<AdminProductsCatalogue />} />
+						<Route path='/admin/*' element={<AdminPage />} />
 					</Routes>
 				</MainContainer>
 				<ToastContainer />

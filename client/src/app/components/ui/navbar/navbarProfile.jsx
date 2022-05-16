@@ -12,6 +12,41 @@ import {
 	logOut,
 } from '../../../store/reducers/user.reducer';
 
+const NavbarProfile = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const isUserProfileLoaded = useSelector(getIsProfileLoaded);
+	const isUserProfileLoading = useSelector(getIsProfileLoading);
+	const loadProfileError = useSelector(getLoadProfileError);
+	const isAuthorizedUser = useSelector(getIsLoggedIn);
+
+	const userProfile = useSelector(getProfile);
+
+	useEffect(() => {
+		if (!isUserProfileLoaded && isAuthorizedUser && !isUserProfileLoading) {
+			dispatch(loadProfile);
+		}
+	}, [isUserProfileLoaded, isAuthorizedUser, isUserProfileLoading, dispatch]);
+
+	const handleLogOut = () => {
+		dispatch(logOut());
+		navigate('/');
+	};
+
+	if (!isUserProfileLoaded || !isAuthorizedUser || loadProfileError) {
+		return (
+			<span className='navbar-text'>
+				<Link to='/login' className='text-primary text-decoration-none'>
+					login
+				</Link>
+			</span>
+		);
+	}
+
+	return <UserProfile userProfile={userProfile} onLogOut={handleLogOut} />;
+};
+
 const UserProfile = ({ userProfile, onLogOut }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleMenu = () => setIsOpen((prev) => !prev);
@@ -56,41 +91,6 @@ const ProfileMenuItem = ({ title, icon, onClick, disabled }) => {
 			<i className={`bi ${icon} text-secondary`}></i>&nbsp;&nbsp;{title}
 		</li>
 	);
-};
-
-const NavbarProfile = () => {
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
-	const isUserProfileLoaded = useSelector(getIsProfileLoaded);
-	const isUserProfileLoading = useSelector(getIsProfileLoading);
-	const loadProfileError = useSelector(getLoadProfileError);
-	const isAuthorizedUser = useSelector(getIsLoggedIn);
-
-	const userProfile = useSelector(getProfile);
-
-	useEffect(() => {
-		if (!isUserProfileLoaded && isAuthorizedUser && !isUserProfileLoading) {
-			dispatch(loadProfile);
-		}
-	}, [isUserProfileLoaded, isAuthorizedUser, isUserProfileLoading, dispatch]);
-
-	const handleLogOut = () => {
-		dispatch(logOut());
-		navigate('/');
-	};
-
-	if (!isUserProfileLoaded || !isAuthorizedUser || loadProfileError) {
-		return (
-			<span className='navbar-text'>
-				<Link to='/login' className='text-primary text-decoration-none'>
-					login
-				</Link>
-			</span>
-		);
-	}
-
-	return <UserProfile userProfile={userProfile} onLogOut={handleLogOut} />;
 };
 
 export default NavbarProfile;

@@ -1,8 +1,8 @@
 const express = require('express');
 const { isValidObjectId } = require('mongoose');
 const Product = require('../model/Product');
-const userService = require('../services/user.service');
 const ErrorResponse = require('./helpers/ErrorResponse');
+const useAdminAuthMiddleware = require('./middleware/adminAuth.middleware');
 const useAuthMiddleware = require('./middleware/auth.middleware');
 const router = express.Router({ mergeParams: true });
 
@@ -30,41 +30,46 @@ router.get('/:id', async (req, res) => {
 	}
 });
 
-router.patch('/:id', useAuthMiddleware(), async (req, res) => {
-	try {
-		if (!(await userService.isAdmin(req.token.userId))) {
-			throw new Error('FORBIDDEN');
-		}
-	} catch (err) {
-		const errResponse = new ErrorResponse(403, 'FORBIDDEN');
-		return res.status(403).json(errResponse);
+router.patch('/:id', useAuthMiddleware(), useAdminAuthMiddleware(), async (req, res) => {
+	const productId = req.params.id;
+	const productData = { ...req.body };
+
+	if (!productId || !productData) {
+		const errResponse = new ErrorResponse(400, 'BAD_REQUEST');
+		return res.status(400).json(errResponse);
 	}
 
-	const { _id, ...productData } = req.body;
-	if (!_id || !productData) {
+	if ('_id' in productData) {
+		delete productData._id;
+	}
+
+	try {
+		const result = await Product.findByIdAndUpdate(productId, productData, { new: true });
+		return res.status(200).json(result);
+	} catch (err) {
+		const errResponse = new ErrorResponse(500, 'SERVER_ERROR', [err.message]);
+		return res.status(400).json(errResponse);
+	}
+});
+
+router.delete('/:id', useAuthMiddleware(), useAdminAuthMiddleware(), async (req, res) => {
+	const productId = req.params.id;
+
+	if (!productId) {
 		const errResponse = new ErrorResponse(400, 'BAD_REQUEST');
 		return res.status(400).json(errResponse);
 	}
 
 	try {
-		const res = await Product.findByIdAndUpdate(_id, productData, { new: true });
-		res.send(200).json(res);
-	} catch {
-		const errResponse = new ErrorResponse(500, 'SERVER_ERROR');
+		const result = await Product.findByIdAndDelete(productId);
+		return res.status(200).json(result);
+	} catch (err) {
+		const errResponse = new ErrorResponse(500, 'SERVER_ERROR', [err.message]);
 		return res.status(400).json(errResponse);
 	}
 });
 
-router.post('/', useAuthMiddleware(), async (req, res) => {
-	try {
-		if (!(await userService.isAdmin(req.token.userId))) {
-			throw new Error('FORBIDDEN');
-		}
-	} catch (err) {
-		const errResponse = new ErrorResponse(403, 'FORBIDDEN');
-		return res.status(403).json(errResponse);
-	}
-
+router.post('/', useAuthMiddleware(), useAdminAuthMiddleware(), async (req, res) => {
 	const { ...productData } = req.body;
 	if (!productData) {
 		const errResponse = new ErrorResponse(400, 'BAD_REQUEST');
@@ -72,10 +77,10 @@ router.post('/', useAuthMiddleware(), async (req, res) => {
 	}
 
 	try {
-		const res = await Product.create(productData);
-		res.send(201).json(res);
-	} catch {
-		const errResponse = new ErrorResponse(500, 'SERVER_ERROR');
+		const result = await Product.create(productData);
+		return res.status(201).json(result);
+	} catch (err) {
+		const errResponse = new ErrorResponse(500, 'SERVER_ERROR', [err.message]);
 		return res.status(400).json(errResponse);
 	}
 });
